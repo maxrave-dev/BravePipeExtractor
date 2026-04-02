@@ -11,7 +11,7 @@ allprojects {
     apply(plugin = "java-library")
 
     group = "com.github.maxrave-dev"
-    version = "v0.26.0"
+    version = "v0.26.1"
 
     tasks.withType<JavaCompile> {
         options.encoding = Charsets.UTF_8.toString()
