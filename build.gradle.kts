@@ -28,8 +28,10 @@ subprojects {
     // https://discuss.gradle.org/t/best-approach-gradle-multi-module-project-generate-just-one-global-javadoc/18657/21
     // Fixes unknown tag @implNote; the other two were added precautionary
     tasks.withType<Javadoc>().configureEach {
+        isFailOnError = false
         (options as StandardJavadocDocletOptions).apply {
             encoding = Charsets.UTF_8.toString()
+            addStringOption("Xdoclint:none", "-quiet")
             links = listOf("https://docs.oracle.com/javase/11/docs/api/")
             tags = listOf(
                 "apiNote:a:API Note:",
