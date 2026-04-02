@@ -132,7 +132,7 @@ wire {
 publishing {
     publications {
         create<MavenPublication>("release") {
-            groupId = "net.newpipe"
+            groupId = rootProject.group.toString()
             artifactId = "extractor"
             version = rootProject.version.toString()
 

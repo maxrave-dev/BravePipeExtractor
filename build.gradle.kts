@@ -10,6 +10,7 @@ plugins {
 allprojects {
     apply(plugin = "java-library")
 
+    group = "com.github.maxrave-dev"
     version = "v0.26.0"
 
     tasks.withType<JavaCompile> {
