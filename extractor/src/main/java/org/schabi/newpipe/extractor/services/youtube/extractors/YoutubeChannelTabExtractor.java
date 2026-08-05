@@ -68,6 +68,8 @@ public class YoutubeChannelTabExtractor extends ChannelTabExtractor {
             return "EghyZWxlYXNlc_IGBQoDsgEA";
         } else if (type.equals(ChannelTabs.PLAYLISTS)) {
             return "EglwbGF5bGlzdHPyBgQKAkIA";
+        } else if (type.equals(ChannelTabs.COURSES)) {
+            return "Egdjb3Vyc2Vz8gYFCgPCAQA%3D";
         } else if (type.equals(ChannelTabs.PODCASTS)) {
             return "Eghwb2RjYXN0c_IGBQoDugEA";
         }
