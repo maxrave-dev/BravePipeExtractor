@@ -97,7 +97,7 @@ public class RumbleShortsStreamExtractor extends StreamExtractor {
     @Override
     public Description getDescription() throws ParsingException {
         String desc = currentVideo.getString("processed_description", "");
-        return new Description(desc, Description.PLAIN_TEXT);
+        return new Description(desc, Description.Type.PLAIN_TEXT);
     }
 
     @Nonnull

@@ -153,7 +153,7 @@ public class RumbleStreamExtractor extends StreamExtractor {
             }
         }
 
-        return new Description(Parser.unescapeEntities(description, false), Description.PLAIN_TEXT);
+        return new Description(Parser.unescapeEntities(description, false), Description.Type.PLAIN_TEXT);
     }
 
     @Override

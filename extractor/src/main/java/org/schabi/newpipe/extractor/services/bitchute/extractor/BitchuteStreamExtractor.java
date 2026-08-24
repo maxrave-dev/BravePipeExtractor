@@ -134,7 +134,7 @@ public class BitchuteStreamExtractor extends StreamExtractor {
     @Nonnull
     @Override
     public Description getDescription() throws ParsingException {
-        return new Description(streamVideoResults.getDescription(), Description.HTML);
+        return new Description(streamVideoResults.getDescription(), Description.Type.HTML);
     }
 
     @Override

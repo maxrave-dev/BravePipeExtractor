@@ -32,7 +32,7 @@ public class BitchuteCommentsInfoItemExtractor implements CommentsInfoItemExtrac
 
     @Override
     public Description getCommentText() {
-        return new Description(json.getString("content"), Description.PLAIN_TEXT);
+        return new Description(json.getString("content"), Description.Type.PLAIN_TEXT);
     }
 
     @Override
