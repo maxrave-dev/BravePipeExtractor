@@ -2,6 +2,7 @@ package org.schabi.newpipe.extractor.services.bandcamp.extractors;
 
 import org.jsoup.nodes.Element;
 import org.schabi.newpipe.extractor.Image;
+import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItemExtractor;
 
 import javax.annotation.Nonnull;
@@ -20,8 +21,11 @@ public class BandcampPlaylistInfoItemExtractor implements PlaylistInfoItemExtrac
 
     @Override
     public String getUploaderName() {
-        return resultInfo.getElementsByClass("subhead").text()
-                .split(" by")[0];
+        final String uploaderText =  resultInfo.getElementsByClass("subhead").text();
+        if (uploaderText.startsWith("by ")) {
+            return uploaderText.substring(3);
+        }
+        return uploaderText;
     }
 
     @Override
@@ -37,7 +41,14 @@ public class BandcampPlaylistInfoItemExtractor implements PlaylistInfoItemExtrac
     @Override
     public long getStreamCount() {
         final String length = resultInfo.getElementsByClass("length").text();
-        return Integer.parseInt(length.split(" track")[0]);
+        int end = 0;
+        while (end < length.length() && Character.isDigit(length.charAt(end))) {
+            end++;
+        }
+        if (end == 0) {
+            return ListExtractor.ITEM_COUNT_UNKNOWN;
+        }
+        return Long.parseLong(length.substring(0, end));
     }
 
     @Override

@@ -1,7 +1,10 @@
 package org.schabi.newpipe.extractor.services.youtube.stream;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.schabi.newpipe.extractor.ServiceList.YouTube;
 
+import org.junit.jupiter.api.Test;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.services.DefaultStreamExtractorTest;
 import org.schabi.newpipe.extractor.services.youtube.InitYoutubeTest;
@@ -15,7 +18,7 @@ import javax.annotation.Nullable;
 
 public class YoutubeStreamExtractorLivestreamTest extends DefaultStreamExtractorTest
     implements InitYoutubeTest {
-    private static final String ID = "X4VbdwhkE10";
+    private static final String ID = "rFZHOHl-L8A";
     private static final int TIMESTAMP = 1737;
     private static final String URL = YoutubeStreamExtractorDefaultTest.BASE_URL + ID + "&t=" + TIMESTAMP;
 
@@ -31,7 +34,15 @@ public class YoutubeStreamExtractorLivestreamTest extends DefaultStreamExtractor
     @Override public String expectedOriginalUrlContains() { return URL; }
 
     @Override public StreamType expectedStreamType() { return StreamType.LIVE_STREAM; }
+    @Override public boolean expectedHasLiveChat() { return true; }
     @Override public String expectedUploaderName() { return "Lofi Girl"; }
+
+    @Test
+    void testLiveChatContinuationNotNull() throws Exception {
+        final String continuation = extractor().getLiveChatContinuation();
+        assertNotNull(continuation);
+        assertFalse(continuation.isEmpty());
+    }
     @Override public String expectedUploaderUrl() { return "https://www.youtube.com/channel/UCSJ4gkVC6NrvII8umztf0Ow"; }
     @Override public long expectedUploaderSubscriberCountAtLeast() { return 9_800_000; }
     @Override public List<String> expectedDescriptionContains() {
@@ -42,8 +53,8 @@ public class YoutubeStreamExtractorLivestreamTest extends DefaultStreamExtractor
     @Override public long expectedLength() { return 0; }
     @Override public long expectedTimestamp() { return TIMESTAMP; }
     @Override public long expectedViewCountAtLeast() { return 0; }
-    @Nullable @Override public String expectedUploadDate() { return "2026-06-04 06:49:58.000"; }
-    @Nullable @Override public String expectedTextualUploadDate() { return "2026-06-03T23:49:58-07:00"; }
+    @Nullable @Override public String expectedUploadDate() { return "2026-08-19 07:31:51.000"; }
+    @Nullable @Override public String expectedTextualUploadDate() { return "2026-08-19T00:31:51-07:00"; }
     @Override public long expectedLikeCountAtLeast() { return 5_000; }
     @Override public long expectedDislikeCountAtLeast() { return -1; }
     @Override public boolean expectedHasSubtitles() { return false; }
@@ -52,11 +63,12 @@ public class YoutubeStreamExtractorLivestreamTest extends DefaultStreamExtractor
     @Override public String expectedLicence() { return "YouTube licence"; }
     @Override public String expectedCategory() { return "Music"; }
     @Override public List<String> expectedTags() {
-        return Arrays.asList("beats to relax", "chilled cow", "chilled cow radio", "chilledcow", "chilledcow radio",
-                "chilledcow station", "chillhop", "hip hop", "hiphop", "lo fi", "lo fi hip hop", "lo fi hip hop radio",
-                "lo fi hiphop", "lo fi radio", "lo-fi", "lo-fi hip hop", "lo-fi hip hop radio", "lo-fi hiphop",
+        return Arrays.asList("beats to relax", "chilled cow", "chilled cow radio", "chilledcow", "chillhop",
+                "focus music", "hip hop", "hiphop", "lo fi", "lo fi hip hop", "lo fi hip hop radio",
+                "lo fi hiphop", "lo fi radio", "lo-fi", "lo-fi hip hop radio", "lofi chill",
+                "lofi girl", "lofi girl radio", "lo-fi hip hop", "lo-fi hiphop",
                 "lo-fi radio", "lofi", "lofi hip hop", "lofi hip hop radio", "lofi hiphop", "lofi radio", "music",
-                "lofi radio chilledcow", "music to study", "playlist", "radio", "relaxing music", "study music",
-                "lofi hip hop radio - beats to relax\\/study to");
+                "lofi study", "music to relax", "music to study", "playlist", "radio",
+                "relax music", "relaxing music", "sleep music", "study lofi", "study music");
     }
 }
